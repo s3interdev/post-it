@@ -13,7 +13,7 @@ export default function CreatePost() {
 					onChange={(e) => setTitle(e.target.value)}
 					name="title"
 					value={title}
-					rows={8}
+					rows={7}
 					placeholder="What do you want to say?"
 					className="my-2 rounded bg-gray-200 p-4 text-lg"
 				></textarea>
