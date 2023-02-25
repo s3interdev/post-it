@@ -1,8 +1,12 @@
+'use client';
+
+import CreatePost from './components/create-post';
+
 export default function Home() {
 	return (
 		<main>
-			<h1 className="text-xl uppercase">Welcome to The Home Page</h1>
-			<p className="text-lg">Your settings are well configured</p>
+			<p className="my-4 text-lg">Welcome to The Home Page</p>
+			<CreatePost />
 		</main>
 	);
 }
