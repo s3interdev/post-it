@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function DisplayPosts({ avatar, name, postTitle, id }) {
+export default function DisplayPosts({ avatar, name, postTitle, id, comment }) {
 	return (
 		<div className="my-8 rounded bg-white p-8">
 			<div className="flex items-center gap-2">
@@ -15,7 +15,7 @@ export default function DisplayPosts({ avatar, name, postTitle, id }) {
 			</div>
 			<div className="flex cursor-pointer items-center gap-4">
 				<Link href={`/posts/${id}`}>
-					<p className="text-sm font-bold text-gray-800">Comments</p>
+					<p className="text-sm font-bold text-gray-800">{comment?.length} Comments</p>
 				</Link>
 			</div>
 		</div>
