@@ -1,13 +1,44 @@
 'use client';
 
 import { useState } from 'react';
+import axios, { AxiosError } from 'axios';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 export default function CreatePost() {
 	const [title, setTitle] = useState('');
 	const [isDisabled, setIsDisabled] = useState(false);
 
+	let toastPostId: string;
+
+	/* create a post */
+	const { mutate } = useMutation(async (title: string) => await axios.post('/api/posts/createPost', { title }), {
+		onError: (error) => {
+			if (error instanceof AxiosError) {
+				toast.error(error?.response?.data.message, { id: toastPostId });
+			}
+
+			setIsDisabled(false);
+		},
+		onSuccess: (data) => {
+			toast.success('The post was saved successfully.', { id: toastPostId });
+			setTitle('');
+			setIsDisabled(false);
+		},
+	});
+
+	const submitPost = async (e: React.FormEvent) => {
+		e.preventDefault();
+
+		toastPostId = toast.loading('Saving your post...', { id: toastPostId });
+
+		setIsDisabled(true);
+
+		mutate(title);
+	};
+
 	return (
-		<form className="rounded bg-white p-8">
+		<form onSubmit={submitPost} className="rounded bg-white p-8">
 			<div className="my-4 flex flex-col">
 				<textarea
 					onChange={(e) => setTitle(e.target.value)}
@@ -24,6 +55,7 @@ export default function CreatePost() {
 					{`${title.length}/300`}
 				</p>
 				<button
+					type="submit"
 					disabled={isDisabled}
 					className="rounded bg-gray-700 px-5 py-2 uppercase text-white disabled:opacity-25"
 				>
