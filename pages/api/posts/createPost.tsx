@@ -15,7 +15,7 @@ export default async function Handler(req: NextApiRequest, res: NextApiResponse)
 			where: { email: session?.user?.email?.toString() },
 		});
 
-		if (!prismaUser) return res.status(403).json({ message: 'The user does not exist.s' });
+		if (!prismaUser) return res.status(403).json({ message: 'The user does not exist.' });
 
 		if (title.length > 300) return res.status(403).json({ message: 'Please write a shorter post.' });
 
