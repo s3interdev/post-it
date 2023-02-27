@@ -4,7 +4,7 @@ import { authOptions } from '../../pages/api/auth/[...nextauth]';
 import SignIn from './signin';
 import SignedIn from './signedin';
 
-export default async function Header() {
+export default async function NavigationHeader() {
 	const session = await getServerSession(authOptions);
 
 	return (

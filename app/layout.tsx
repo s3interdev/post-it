@@ -1,4 +1,5 @@
-import Header from './navigation-header/page';
+import QueryWrapper from '@/lib/query-wrapper';
+import NavigationHeader from './navigation-header/page';
 import './globals.css';
 
 export const metadata = {
@@ -18,9 +19,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en">
 			<body className="mx-4 bg-gray-200 font-ubuntu text-neutral-800 antialiased laptop:mx-48 desktop:mx-96">
-				{/* @ts-expect-error Server Component */}
-				<Header />
-				{children}
+				<QueryWrapper>
+					{/* @ts-expect-error Server Component */}
+					<NavigationHeader />
+					{children}
+				</QueryWrapper>
 			</body>
 		</html>
 	);
