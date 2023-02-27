@@ -3,7 +3,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function DisplayPosts({ avatar, name, postTitle, id, comment }) {
+type DisplayProps = {
+	id: string;
+	name: string;
+	postTitle: string;
+	avatar: string;
+	comment?: {
+		id: string;
+		userId: string;
+		postId: string;
+	}[];
+};
+
+export default function DisplayPosts({ avatar, name, postTitle, id, comment }: DisplayProps) {
 	return (
 		<div className="my-8 rounded bg-white p-8">
 			<div className="flex items-center gap-2">
