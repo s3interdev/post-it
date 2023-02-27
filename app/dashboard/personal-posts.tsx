@@ -10,10 +10,8 @@ const fetchAuthPosts = async () => {
 	return response.data;
 };
 
-export default function PersonalPosts() {
-	const { data, error, isLoading } = useQuery<AuthPosts>({ queryFn: fetchAuthPosts, queryKey: ['auth-posts'] });
-
-	if (error) return error;
+export default function PersonalPosts(): JSX.Element {
+	const { data, isLoading } = useQuery<AuthPosts>({ queryFn: fetchAuthPosts, queryKey: ['auth-posts'] });
 
 	if (isLoading) return <h1>Loading your posts...</h1>;
 
