@@ -11,20 +11,19 @@ export default async function Handler(req: NextApiRequest, res: NextApiResponse)
 
 		const title: string = req.body.title;
 
-		/* get signed in user */
-		const signedInUser = await prisma.user.findUnique({
-			where: { email: session?.user?.email },
+		const prismaUser = await prisma.user.findUnique({
+			where: { email: session?.user?.email?.toString() },
 		});
 
-		/* misformatted data */
+		if (!prismaUser) return res.status(403).json({ message: 'The user does not exist.s' });
+
 		if (title.length > 300) return res.status(403).json({ message: 'Please write a shorter post.' });
 
 		if (title.length === 0) return res.status(403).json({ message: 'The post should not be blank.' });
 
-		/* create the post */
 		try {
 			const result = await prisma.post.create({
-				data: { title, userId: signedInUser.id },
+				data: { title, userId: prismaUser.id },
 			});
 
 			res.status(200).json(result);
