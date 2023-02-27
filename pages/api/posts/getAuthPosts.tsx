@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 		try {
 			const data = await prisma.user.findUnique({
-				where: { email: session?.user?.email },
+				where: { email: session?.user?.email?.toString() },
 				include: {
 					post: {
 						orderBy: { createdAt: 'desc' },
