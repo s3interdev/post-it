@@ -40,7 +40,7 @@ export default function CreatePost() {
 	};
 
 	return (
-		<form onSubmit={submitPost} className="rounded bg-white p-8">
+		<form onSubmit={submitPost} className="my-8 rounded bg-white p-8">
 			<div className="my-4 flex flex-col">
 				<textarea
 					onChange={(e) => setTitle(e.target.value)}
