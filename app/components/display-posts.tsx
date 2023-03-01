@@ -26,7 +26,7 @@ export default function DisplayPosts({ avatar, name, postTitle, id, comment }: D
 				<p className="break-all">{postTitle}</p>
 			</div>
 			<div className="flex cursor-pointer items-center gap-4">
-				<Link href={`/posts/${id}`}>
+				<Link href={`/post/${id}`}>
 					<p className="text-sm font-bold text-gray-800">{comment?.length} Comments</p>
 				</Link>
 			</div>
